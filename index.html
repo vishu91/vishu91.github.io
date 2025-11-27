@@ -1,116 +1,237 @@
-<h1 align="center">👋 Hi, I'm <strong>B Ishwajit Kumar Gupta</strong></h1>
-<h3 align="center">🚀 Associate Technical Lead | Senior Angular / Full Stack Developer</h3>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>B Ishwajit Kumar Gupta — Profile</title>
 
-<p align="center">
-  <a href="mailto:vishwahcumca@gmail.com"><img src="https://img.shields.io/badge/Email-Contact%20Me-red"></a>
-  <a href="https://github.com/vishu91"><img src="https://img.shields.io/badge/GitHub-Follow%20Me-black"></a>
-  <a href="https://www.linkedin.com/in/bishwajit-kumar-70027279/"><img src="https://img.shields.io/badge/LinkedIn-Connect%20with%20me-blue"></a>
-  <a href="https://leetcode.com/u/Vishu1991/"><img src="https://img.shields.io/badge/LeetCode-Profile-orange?logo=leetcode"></a>
-</p>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
----
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#7c3aed;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --gap:18px;
+      --max:980px;
+      --font: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
 
-## 👨‍💻 **About Me**
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#071023 0%, #071426 100%);
+      font-family:var(--font);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:36px 18px;
+    }
 
-I am a **Full Stack / Senior Frontend Engineer** with **8.6+ years** of experience specializing in:
+    .container{max-width:var(--max);margin:0 auto}
 
-- **Angular (8–13), React**
-- **Node.js, Express.js**
-- **MongoDB, MySQL**
-- **AWS (S3, EC2), CI/CD, Jenkins**
-- **Performance optimization & scalable architecture**
+    /* Hero Section */
+    .hero{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:22px;
+    }
+    .hero h1{margin:0;font-size:26px}
+    .hero h2{margin:6px 0 0;font-size:15px;color:var(--muted);font-weight:500}
+    .avatar img{
+      width:96px;height:96px;border-radius:12px;
+      object-fit:cover;border:2px solid rgba(255,255,255,0.06)
+    }
 
-I love building **fast, scalable, clean, and user-friendly web applications**, improving performance, and solving complex engineering problems.
+    /* Chips */
+    .contacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .chip{
+      display:inline-block;background:var(--glass);
+      padding:8px 12px;border-radius:999px;
+      color:var(--muted);text-decoration:none;font-size:13px;
+      border:1px solid rgba(255,255,255,0.02);
+      transition:0.2s;
+    }
+    .chip:hover{transform:translateY(-2px);}
 
----
+    /* Cards */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:18px;border-radius:var(--radius);
+      margin-bottom:var(--gap);
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 6px 18px rgba(2,6,23,0.6);
+    }
+    .card h3{margin:0 0 10px 0;font-size:16px}
+    .card p{margin:0;color:var(--muted)}
 
-## 🚀 **Tech Stack**
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;margin-bottom:var(--gap);
+    }
+    .icons img{max-width:100%;height:38px;object-fit:contain}
 
-### **Frontend**
-<p>
-  <img src="https://skillicons.dev/icons?i=angular,react,js,ts,html,css,bootstrap" />
-</p>
+    /* Achievements */
+    .achievements ul{
+      margin:0;padding-left:18px;color:var(--muted)
+    }
 
-### **Backend**
-<p>
-  <img src="https://skillicons.dev/icons?i=nodejs,express,mongodb,mysql" />
-</p>
+    /* Projects */
+    .project{margin-bottom:12px}
+    .project h4{margin:0 0 6px 0;font-size:15px}
+    .project .tech{font-size:13px;color:var(--muted);margin-top:6px}
 
-### **Cloud & DevOps**
-<p>
-  <img src="https://skillicons.dev/icons?i=aws,git,github,bitbucket,linux" />
-</p>
+    /* Stats */
+    .stats img{max-width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+    .stats .stat-images{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .streak img{max-width:100%}
 
-### **Tools & Libraries**
-<p>
-  <img src="https://skillicons.dev/icons?i=vscode,postman" />
-</p>
+    /* Footer */
+    .footer{
+      display:flex;flex-direction:column;
+      gap:12px;align-items:flex-start
+    }
+    .footer .muted{color:var(--muted);font-size:13px}
+    .fun{color:var(--muted);font-size:14px}
 
----
+    /* Responsive */
+    @media (max-width:760px){
+      .hero{flex-direction:column;align-items:flex-start}
+      .avatar img{width:72px;height:72px}
+    }
+  </style>
+</head>
 
-## 🏆 **Achievements**
+<body>
+  <main class="container">
 
-- ⭐ **Best Employee of the Month** – Kore.ai  
-- 🚀 Reduced web app load time by **50%**  
-- 📈 Improved dashboard performance by **20–30%**  
-- 🧑‍🏫 Led and mentored a team of 5 developers  
-- ⚡ Delivered high-impact enterprise modules and micro-apps  
+    <!-- HERO -->
+    <header class="hero">
+      <div>
+        <h1>👋 Hi, I'm <strong>B Ishwajit Kumar Gupta</strong></h1>
+        <h2>🚀 Associate Technical Lead | Senior Angular / Full Stack Developer</h2>
 
----
+        <p class="contacts">
+          <a href="mailto:vishwahcumca@gmail.com" class="chip">📧 vishwahcumca@gmail.com</a>
+          <span class="chip">📍 Hyderabad, India</span>
+          <a class="chip" href="https://github.com/vishu91" target="_blank">💻 @vishu91</a>
+          <a class="chip" href="https://www.linkedin.com/in/bishwajit-kumar-70027279/" target="_blank">🔗 LinkedIn</a>
+          <a class="chip" href="https://leetcode.com/u/Vishu1991/" target="_blank">🧠 LeetCode</a>
+        </p>
+      </div>
 
-## 🔥 **GitHub Stats**
+      <div class="avatar">
+        <img src="https://avatars.githubusercontent.com/vishu91" alt="avatar" onerror="this.style.display='none'">
+      </div>
+    </header>
 
-<p align="center">
-  <img height="160" src="https://github-readme-stats.vercel.app/api?username=vishu91&show_icons=true&theme=tokyonight&count_private=true" />
-  <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=vishu91&layout=compact&theme=tokyonight" />
-</p>
+    <!-- About -->
+    <section class="card about">
+      <h3>About Me</h3>
+      <p>
+        I am a <strong>Full Stack / Senior Frontend Engineer</strong> with <strong>8.6+ years</strong> experience.
+        I specialise in <strong>Angular, React, Node.js, Express, MongoDB, MySQL, AWS, CI/CD</strong> and
+        performance optimisation. I build fast, scalable and maintainable web applications.
+      </p>
+    </section>
 
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=vishu91&theme=tokyonight" />
-</p>
+    <!-- Tech Grid -->
+    <section class="grid">
 
----
+      <article class="card">
+        <h3>Tech Stack — Frontend</h3>
+        <p class="icons"><img src="https://skillicons.dev/icons?i=angular,react,js,ts,html,css,bootstrap"></p>
+      </article>
 
-## 📂 **Highlighted Projects**
+      <article class="card">
+        <h3>Tech Stack — Backend</h3>
+        <p class="icons"><img src="https://skillicons.dev/icons?i=nodejs,express,mongodb,mysql,redis"></p>
+      </article>
 
-### 🔹 **Enterprise Dashboard Modernization (Angular)**
-✔ Improved performance by **40%**  
-✔ Added lazy loading, caching, micro-modules  
-**Tech:** Angular, RxJS, Node.js, Chart.js  
-🔗 *(Add GitHub link here if code is public)*
+      <article class="card">
+        <h3>Cloud & DevOps</h3>
+        <p class="icons"><img src="https://skillicons.dev/icons?i=aws,git,github,bitbucket,linux"></p>
+      </article>
 
----
+      <article class="card">
+        <h3>Tools & Libraries</h3>
+        <p class="icons"><img src="https://skillicons.dev/icons?i=vscode,postman"></p>
+      </article>
 
-### 🔹 **Case Management REST APIs (Node.js + MongoDB)**
-✔ Designed scalable APIs with optimized queries  
-✔ Improved response time across modules  
-**Tech:** Node.js, Express, MongoDB  
-🔗 *(Add GitHub link here)*
+    </section>
 
----
+    <!-- Achievements -->
+    <section class="card achievements">
+      <h3>Achievements</h3>
+      <ul>
+        <li>⭐ Best Employee of the Month – Kore.ai</li>
+        <li>🚀 Reduced web app load time by <strong>50%</strong></li>
+        <li>📈 Improved dashboard performance by <strong>20–30%</strong></li>
+        <li>🧑‍🏫 Led & mentored a team of 5 developers</li>
+      </ul>
+    </section>
 
-### 🔹 **Agent Chat (Socket.io + Angular)**
-✔ Real-time chat with improved WebSocket performance  
-✔ Reduced latency and enhanced stability  
-**Tech:** Socket.io, Node.js, Angular  
-🔗 *(Add GitHub link here)*
+    <!-- Stats -->
+    <section class="card stats">
+      <h3>GitHub Stats</h3>
 
----
+      <div class="stat-images">
+        <img src="https://github-readme-stats.vercel.app/api?username=vishu91&show_icons=true&theme=tokyonight&count_private=true">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vishu91&layout=compact&theme=tokyonight">
+      </div>
 
-## 📬 **Connect With Me**
+      <div class="streak">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=vishu91&theme=tokyonight">
+      </div>
+    </section>
 
-<p>
-  <a href="https://www.linkedin.com/in/bishwajit-kumar-70027279/"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=for-the-badge"></a>
-  <a href="https://github.com/vishu91"><img src="https://img.shields.io/badge/GitHub-Follow-black?logo=github&style=for-the-badge"></a>
-  <a href="mailto:vishwahcumca@gmail.com"><img src="https://img.shields.io/badge/Email-Contact-red?logo=gmail&style=for-the-badge"></a>
-  <a href="https://leetcode.com/u/Vishu1991/"><img src="https://img.shields.io/badge/LeetCode-Profile-orange?logo=leetcode&style=for-the-badge"></a>
-</p>
+    <!-- Projects -->
+    <section class="card projects">
+      <h3>Highlighted Projects</h3>
 
----
+      <div class="project">
+        <h4>Enterprise Dashboard Modernization (Angular)</h4>
+        <p>Improved performance by <strong>40%</strong>. Added lazy loading, caching and micro-modules.</p>
+        <p class="tech">Tech: Angular, RxJS, Node.js, Chart.js</p>
+      </div>
 
-## 🎯 **Fun Fact**
-💡 I love optimizing apps — watching response times drop is my favourite hobby 😄
+      <div class="project">
+        <h4>Case Management REST APIs</h4>
+        <p>Designed scalable APIs and optimized queries to improve response times.</p>
+        <p class="tech">Tech: Node.js, Express, MongoDB</p>
+      </div>
 
----
+      <div class="project">
+        <h4>Agent Chat (Socket.io + Angular)</h4>
+        <p>Real-time chat with improved WebSocket reliability and reduced latency.</p>
+        <p class="tech">Tech: Socket.io, Angular, Node.js</p>
+      </div>
+    </section>
 
-### ⭐ *If you like my work, please ⭐ star my repositories!*
+    <!-- Footer -->
+    <footer class="card footer">
+      <h3>Connect with me</h3>
+      <p class="contacts">
+        <a href="https://github.com/vishu91" class="chip" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/bishwajit-kumar-70027279/" class="chip" target="_blank">LinkedIn</a>
+        <a href="https://leetcode.com/u/Vishu1991/" class="chip" target="_blank">LeetCode</a>
+        <a href="mailto:vishwahcumca@gmail.com" class="chip">Email</a>
+      </p>
+
+      <p class="fun">💡 I love optimizing apps — watching response times drop is my favourite hobby 😄</p>
+      <p class="muted">⭐ If you like my work, please star my repositories!</p>
+    </footer>
+
+  </main>
+</body>
+</html>
