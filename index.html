@@ -387,6 +387,95 @@
     body.light-mode h4{
       color:#000!important;
     }
+
+    /* Copy Button Styles */
+    .copy-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: 8px;
+      vertical-align: middle;
+      position: relative;
+    }
+    .copy-btn:hover{
+      background: rgba(124, 58, 237, 0.2);
+      border-color: var(--accent);
+      transform: scale(1.1);
+    }
+    .copy-btn svg{
+      width: 16px;
+      height: 16px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      transition: all 0.3s ease;
+    }
+    .copy-btn:hover svg{
+      stroke: #9d5eff;
+    }
+    .copy-btn.copied{
+      background: rgba(34, 197, 94, 0.2);
+      border-color: #22c55e;
+    }
+    .copy-btn.copied svg{
+      stroke: #22c55e;
+    }
+    body.light-mode .copy-btn{
+      background: rgba(124, 58, 237, 0.08)!important;
+    }
+    body.light-mode .copy-btn:hover{
+      background: rgba(124, 58, 237, 0.15)!important;
+    }
+
+    /* Toast Notification */
+    .toast{
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      animation: slideInUp 0.3s ease, fadeOut 0.3s ease 2.7s;
+      pointer-events: none;
+    }
+    @keyframes slideInUp{
+      from{
+        transform: translateY(100px);
+        opacity: 0;
+      }
+      to{
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    @keyframes fadeOut{
+      to{
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Info items with copy */
+    .info-item{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
   </style>
 </head>
 
@@ -412,6 +501,66 @@ window.onload=()=>{
   const saved=localStorage.getItem("theme");
   if(saved==="light") document.body.classList.add("light-mode");
 };
+
+// Copy to Clipboard Function
+function copyToClipboard(text, button) {
+  navigator.clipboard.writeText(text).then(() => {
+    // Show toast notification
+    showToast(`Copied: ${text}`);
+    
+    // Add copied state to button
+    button.classList.add('copied');
+    
+    // Remove copied state after 2 seconds
+    setTimeout(() => {
+      button.classList.remove('copied');
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+    showToast('Failed to copy', true);
+  });
+}
+
+// Show Toast Notification
+function showToast(message, isError = false) {
+  // Remove existing toast if any
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+  
+  // Create new toast
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  if (isError) {
+    toast.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+  }
+  
+  toast.innerHTML = `
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    ${message}
+  `;
+  
+  document.body.appendChild(toast);
+  
+  // Remove toast after 3 seconds
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+
+// Initialize copy buttons
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const textToCopy = btn.getAttribute('data-copy');
+      copyToClipboard(textToCopy, btn);
+    });
+  });
+});
 </script>
 
 <main class="container">
@@ -423,9 +572,25 @@ window.onload=()=>{
       <h2>🚀 Associate Technical Lead | Senior Angular / Full Stack Developer</h2>
 
       <p class="contacts">
-        <a href="mailto:vishwahcumca@gmail.com" class="chip">📧 vishwahcumca@gmail.com</a>
+        <span class="info-item">
+          <a href="mailto:vishwahcumca@gmail.com" class="chip">📧 vishwahcumca@gmail.com</a>
+          <button class="copy-btn" data-copy="vishwahcumca@gmail.com" title="Copy email">
+            <svg viewBox="0 0 24 24">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </span>
         <span class="chip">📍 Hyderabad, India</span>
-        <a class="chip" href="https://github.com/vishu91" target="_blank">💻 @vishu91</a>
+        <span class="info-item">
+          <a class="chip" href="https://github.com/vishu91" target="_blank">💻 @vishu91</a>
+          <button class="copy-btn" data-copy="vishu91" title="Copy GitHub username">
+            <svg viewBox="0 0 24 24">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </span>
         <a class="chip" href="https://www.linkedin.com/in/bishwajit-kumar-70027279/" target="_blank">🔗 LinkedIn</a>
         <a class="chip" href="https://leetcode.com/u/Vishu1991/" target="_blank">🧠 LeetCode</a>
       </p>
@@ -444,6 +609,46 @@ window.onload=()=>{
       I specialise in <strong>Angular, React, Node.js, Express, MongoDB, MySQL, AWS, CI/CD</strong> and
       performance optimisation. I build fast, scalable and maintainable web applications.
     </p>
+    
+    <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+      <span style="color: var(--muted); font-size: 13px; font-weight: 600;">Quick Copy:</span>
+      <span class="info-item">
+        <span style="color: var(--muted); font-size: 13px;">📧 Email</span>
+        <button class="copy-btn" data-copy="vishwahcumca@gmail.com" title="Copy email address">
+          <svg viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </span>
+      <span class="info-item">
+        <span style="color: var(--muted); font-size: 13px;">💻 GitHub</span>
+        <button class="copy-btn" data-copy="https://github.com/vishu91" title="Copy GitHub profile URL">
+          <svg viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </span>
+      <span class="info-item">
+        <span style="color: var(--muted); font-size: 13px;">🔗 LinkedIn</span>
+        <button class="copy-btn" data-copy="https://www.linkedin.com/in/bishwajit-kumar-70027279/" title="Copy LinkedIn profile URL">
+          <svg viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </span>
+      <span class="info-item">
+        <span style="color: var(--muted); font-size: 13px;">🧠 LeetCode</span>
+        <button class="copy-btn" data-copy="https://leetcode.com/u/Vishu1991/" title="Copy LeetCode profile URL">
+          <svg viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </span>
+    </div>
   </section>
 
   <!-- TECH GRID -->
@@ -619,7 +824,15 @@ window.onload=()=>{
       <a href="https://github.com/vishu91" class="chip" target="_blank">GitHub</a>
       <a href="https://www.linkedin.com/in/bishwajit-kumar-70027279/" class="chip" target="_blank">LinkedIn</a>
       <a href="https://leetcode.com/u/Vishu1991/" class="chip" target="_blank">LeetCode</a>
-      <a href="mailto:vishwahcumca@gmail.com" class="chip">Email</a>
+      <span class="info-item">
+        <a href="mailto:vishwahcumca@gmail.com" class="chip">Email</a>
+        <button class="copy-btn" data-copy="vishwahcumca@gmail.com" title="Copy email">
+          <svg viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </span>
     </p>
 
     <p class="fun">💡 I love optimizing apps — watching response times drop is my favourite hobby 😄</p>
